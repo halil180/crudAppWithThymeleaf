@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+        <form th:object="${person}"  th:action="@{/createPerson}" method="post">
+            <input type="text" th:field="*{firstName}" placeholder="type firstname">
+            <input type="text" th:field="*{lastName}" placeholder="type lastname">
+            <button type="submit">submit</button>
+        </form>
+
+        <table th:if="${persons.size() > 0}">
+            <tr th:each="person : ${persons}">
+                <td th:text="${person.getFirstName()}">  </td>
+                <td th:text="${person.getLastName()}">  </td>
+            </tr>
+        </table>
+
+        <p th:unless="${persons.size()} > 0 ">
+            no person available
+        </p>
+
+</body>
+</html>
