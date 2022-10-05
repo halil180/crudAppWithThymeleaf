@@ -33,7 +33,9 @@ public class PersonController {
     @RequestMapping(path = "/createPerson",method = RequestMethod.POST)
     public  String createPerson(Person person,Model model){
         List<Person> persons = personContainer.getPersons();
-        persons.add(person);
+        if(!person.getFirstName().equals("") && !person.getLastName().equals("")) {
+            persons.add(person);
+        }
         model.addAttribute("persons",persons);
         model.addAttribute("person",new Person());
         return  "index";
